@@ -2,6 +2,7 @@ const express = require('express');
 const hbs = require('hbs'); // handlebars
 const fs = require('fs');
 
+const port = process.env.PORT || 3000;
 var app = express();
 
 hbs.registerPartials(__dirname + '/views/partials');
@@ -30,9 +31,9 @@ app.use((req, res, next) => {
 
 // because next is not being called all the code below this
 // wont run, and all pages will show the maintenance page.
-app.use((req, res, next) => {
-	res.render('maintenance.hbs');
-});
+// app.use((req, res, next) => {
+// 	res.render('maintenance.hbs');
+// });
 
 // __dirname stores the path to the directory
 app.use(express.static(__dirname + '/public'));
@@ -76,8 +77,8 @@ app.get('/bad', (req, res) => {
 // listen takes a second argument (optional)
 // its function that will lets you do something
 // when the server is up.
-app.listen(3000, () => {
-	console.log('Server is up on port 3000');
+app.listen(port, () => {
+	console.log(`Server is up on port ${port}`);
 });
 
 
