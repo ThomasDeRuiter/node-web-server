@@ -2,6 +2,8 @@ const express = require('express');
 const hbs = require('hbs'); // handlebars
 const fs = require('fs');
 
+// create port variable for Heroku
+// for local set to 3000
 const port = process.env.PORT || 3000;
 var app = express();
 
@@ -36,7 +38,7 @@ app.use((req, res, next) => {
 // });
 
 // __dirname stores the path to the directory
-app.use(express.static(__dirname + '/public'));
+app.use('/assets', express.static(__dirname + '/public'));
 
 // CLI nodemon server.js -e js,hbs to watch for js and template changes.
 hbs.registerHelper('getCurrentYear', () => {
